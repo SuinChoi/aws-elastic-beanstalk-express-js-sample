@@ -1,31 +1,10 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:16'
-            args '-u root'
-        }
-    }
-    
+    agent any
     stages {
-        stage('Checkout') {
+        stage('Stage 1') {
             steps {
-                checkout scm
+                echo 'Hello world!'
             }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'npm install --save'
-            }
-        }
-    }
-    
-    post {
-        success {
-            echo 'Successed'
-        }
-        failure {
-            echo 'Failed'
         }
     }
 }
