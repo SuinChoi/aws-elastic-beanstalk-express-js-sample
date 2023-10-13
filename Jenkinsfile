@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    tools {
+        nodejs 'NodeJS'
+    }
     stages {
         stage('Stage 1') {
             steps {
@@ -11,7 +14,6 @@ pipeline {
                 checkout scm
             }
         }
-
         stage('Build') {
             steps {
                 sh 'npm install --save'
