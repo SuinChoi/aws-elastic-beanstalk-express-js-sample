@@ -1,14 +1,14 @@
 pipeline {
     agent {
         docker {
-            image 'node:16' 
-            args '-p 3000:3000' 
+            image 'node:16'  // Specify the Node.js 16 Docker image
+            args '-v /var/run/docker.sock:/var/run/docker.sock'  // Optional: Mount Docker socket
         }
     }
     stages {
-        stage('Build') { 
+        stage('Build') {
             steps {
-                sh 'npm install --save' 
+                sh 'npm install'  // Your build steps go here
             }
         }
     }
