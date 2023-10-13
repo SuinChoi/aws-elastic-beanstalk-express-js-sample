@@ -1,11 +1,6 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:16' 
-            args '-u root'  
-        }
-    }
-    
+    agent any
+
     stages {
         stage('Checkout') {
             steps {
@@ -15,14 +10,15 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'npm install --save'
+                tool name: 'Node.js', type: 'ToolType'
+                sh 'npm install'
             }
         }
     }
     
     post {
         success {
-            echo 'Successed'
+            echo 'Succeeded'
         }
         failure {
             echo 'Failed'
